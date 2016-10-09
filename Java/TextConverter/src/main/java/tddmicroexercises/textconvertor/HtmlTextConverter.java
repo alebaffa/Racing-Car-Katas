@@ -16,18 +16,12 @@ public class HtmlTextConverter {
     }
 
     public String convertToHtml() throws IOException {
+        HtmlFormatter htmlFormatter = getHtmlFormatter();
+        return htmlFormatter.convertToHtml();
+    }
 
-        BufferedReader reader = new BufferedReader(readerFactory.createReader());
-
-        String line = reader.readLine();
-        String html = "";
-        while (line != null) {
-            html += StringEscapeUtils.escapeHtml(line);
-            html += "<br />";
-            line = reader.readLine();
-        }
-        return html;
-
+    private HtmlFormatter getHtmlFormatter() throws IOException {
+        return new HtmlFormatter(readerFactory.createReader());
     }
 
     public String getFilename() {
