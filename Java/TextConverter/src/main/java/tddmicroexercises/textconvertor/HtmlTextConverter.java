@@ -6,7 +6,7 @@ public class HtmlTextConverter {
     private ReaderFactory readerFactory;
 
     public HtmlTextConverter(String fullFilenameWithPath) {
-        this.readerFactory = new FileReaderFactory(fullFilenameWithPath);
+        this(new FileReaderFactory(fullFilenameWithPath));
     }
 
     public HtmlTextConverter(ReaderFactory readerFactory) {
