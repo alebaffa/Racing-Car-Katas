@@ -1,52 +1,31 @@
 package tddmicroexercises.textconvertor;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HtmlPagesConverter {
 
     private String filename;
-    private List<Integer> breaks = new ArrayList<Integer>();
+    private ReaderFactory readerFactory;
+
+    public HtmlPagesConverter(ReaderFactory readerFactory) throws IOException{
+        this.readerFactory = readerFactory;
+        this.filename = readerFactory.getFilename();
+    }
     
     public HtmlPagesConverter(String filename) throws IOException {
-        this.filename = filename;
-
-        this.breaks.add(0);
-        BufferedReader reader = new BufferedReader(new FileReader(this.filename));
-        int cumulativeCharCount = 0;
-        String line = reader.readLine();
-        while (line != null)
-        {
-            cumulativeCharCount += line.length() + 1; // add one for the newline
-            if (line.contains("PAGE_BREAK")) {
-                int page_break_position = cumulativeCharCount;
-                breaks.add(page_break_position);
-            }
-            line = reader.readLine();
-        }
-        reader.close();
+        this(new FileReaderFactory(filename));
     }
 
     public String getHtmlPage(int page) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(this.filename));
-        reader.skip(breaks.get(page));
-        StringBuffer htmlPage = new StringBuffer();
-        String line = reader.readLine();
-        while (line != null)
-        {
-            if (line.contains("PAGE_BREAK")) {
-                break;
-            }
-            htmlPage.append(StringEscapeUtils.escapeHtml(line));
-            htmlPage.append("<br />");
-            
-            line = reader.readLine();
-        }
-        reader.close();
-        return htmlPage.toString();
+        PageHtmlFormatter htmlFormatter = getPageHtmlFormatter();
+        htmlFormatter.convertToHtml();
+        return htmlFormatter.getHtml();
+    }
+
+    private PageHtmlFormatter getPageHtmlFormatter() throws IOException {
+        return new PageHtmlFormatter(readerFactory.createReader());
     }
 
     public String getFilename() {

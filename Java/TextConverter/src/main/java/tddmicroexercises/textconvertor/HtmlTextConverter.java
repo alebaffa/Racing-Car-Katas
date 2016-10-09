@@ -16,11 +16,12 @@ public class HtmlTextConverter {
     }
 
     public String convertToHtml() throws IOException {
-        HtmlFormatter htmlFormatter = getHtmlFormatter();
-        return htmlFormatter.convertToHtml();
+        Formatter htmlFormatter = getHtmlFormatter();
+        htmlFormatter.convertToHtml();
+        return htmlFormatter.getHtml();
     }
 
-    private HtmlFormatter getHtmlFormatter() throws IOException {
+    private Formatter getHtmlFormatter() throws IOException {
         return new HtmlFormatter(readerFactory.createReader());
     }
 

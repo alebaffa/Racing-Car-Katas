@@ -7,17 +7,18 @@ import java.io.Reader;
 /**
  * Created by alebaffa on 09/10/16.
  */
-public class HtmlFormatter extends Formatter {
+public class PageHtmlFormatter extends Formatter {
     private BufferedReader bufferedReader;
 
-    public HtmlFormatter(Reader reader) {
-        this.bufferedReader = new BufferedReader(reader);
-    }
+    public PageHtmlFormatter(Reader reader) {
+        this.bufferedReader = new BufferedReader(reader); }
 
-    @Override
     public void convertToHtml() throws IOException {
         String line;
         while ((line = bufferedReader.readLine()) != null) {
+            if (line.contains("PAGE_BREAK")) {
+                break;
+            }
             convertLine(line);
             addBreakLine();
         }

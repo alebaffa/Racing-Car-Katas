@@ -8,7 +8,7 @@ import java.io.Reader;
  * Created by alebaffa on 09/10/16.
  */
 public class FileReaderFactory implements ReaderFactory {
-    String filename;
+    private String filename;
 
     public FileReaderFactory(String fullFilenameWithPath) {
         this.filename = fullFilenameWithPath;
@@ -17,5 +17,10 @@ public class FileReaderFactory implements ReaderFactory {
     @Override
     public Reader createReader() throws FileNotFoundException {
         return new FileReader(filename);
+    }
+
+    @Override
+    public String getFilename() {
+        return this.filename;
     }
 }

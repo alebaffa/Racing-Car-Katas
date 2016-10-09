@@ -8,7 +8,7 @@ import java.io.StringReader;
  * Created by alebaffa on 09/10/16.
  */
 public class StringReaderFactory implements ReaderFactory {
-    String filename;
+    private String filename;
 
     public StringReaderFactory(String filename) {
         this.filename = filename;
@@ -17,5 +17,10 @@ public class StringReaderFactory implements ReaderFactory {
     @Override
     public Reader createReader() throws IOException {
         return new StringReader(filename);
+    }
+
+    @Override
+    public String getFilename() {
+        return this.filename;
     }
 }
