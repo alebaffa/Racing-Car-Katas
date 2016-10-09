@@ -20,7 +20,7 @@ public class FileReaderFactory implements ReaderFactory {
     }
 
     @Override
-    public String getFilename() {
+    public String getItemName() {
         return this.filename;
     }
 }

@@ -1,35 +1,31 @@
 package tddmicroexercises.textconvertor;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 public class HtmlPagesConverter {
 
     private String filename;
     private ReaderFactory readerFactory;
 
-    public HtmlPagesConverter(ReaderFactory readerFactory) throws IOException{
+    public HtmlPagesConverter(ReaderFactory readerFactory) throws IOException {
         this.readerFactory = readerFactory;
-        this.filename = readerFactory.getFilename();
+        this.filename = readerFactory.getItemName();
     }
-    
+
     public HtmlPagesConverter(String filename) throws IOException {
         this(new FileReaderFactory(filename));
     }
 
     public String getHtmlPage(int page) throws IOException {
-        PageHtmlFormatter htmlFormatter = getPageHtmlFormatter();
+        Formatter htmlFormatter = getPageHtmlFormatter();
         htmlFormatter.convertToHtml();
         return htmlFormatter.getHtml();
     }
 
-    private PageHtmlFormatter getPageHtmlFormatter() throws IOException {
+    private Formatter getPageHtmlFormatter() throws IOException {
         return new PageHtmlFormatter(readerFactory.createReader());
     }
 
-    public String getFilename() {
-        return this.filename;
-    }
-    
+    public String getFilename() { return readerFactory.getItemName(); }
+
 }

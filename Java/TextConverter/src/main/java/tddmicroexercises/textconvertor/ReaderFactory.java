@@ -9,5 +9,5 @@ import java.io.Reader;
 public interface ReaderFactory {
     Reader createReader() throws IOException;
 
-    String getFilename();
+    String getItemName();
 }

@@ -8,19 +8,19 @@ import java.io.StringReader;
  * Created by alebaffa on 09/10/16.
  */
 public class StringReaderFactory implements ReaderFactory {
-    private String filename;
+    private String string;
 
-    public StringReaderFactory(String filename) {
-        this.filename = filename;
+    public StringReaderFactory(String string) {
+        this.string = string;
     }
 
     @Override
     public Reader createReader() throws IOException {
-        return new StringReader(filename);
+        return new StringReader(string);
     }
 
     @Override
-    public String getFilename() {
-        return this.filename;
+    public String getItemName() {
+        return this.string;
     }
 }

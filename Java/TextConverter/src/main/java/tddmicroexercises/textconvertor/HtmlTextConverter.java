@@ -3,11 +3,9 @@ package tddmicroexercises.textconvertor;
 import java.io.*;
 
 public class HtmlTextConverter {
-    private String fullFilenameWithPath;
     private ReaderFactory readerFactory;
 
     public HtmlTextConverter(String fullFilenameWithPath) {
-        this.fullFilenameWithPath = fullFilenameWithPath;
         this.readerFactory = new FileReaderFactory(fullFilenameWithPath);
     }
 
@@ -26,6 +24,6 @@ public class HtmlTextConverter {
     }
 
     public String getFilename() {
-        return this.fullFilenameWithPath;
+        return readerFactory.getItemName();
     }
 }
