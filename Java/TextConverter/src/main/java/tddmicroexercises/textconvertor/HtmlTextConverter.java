@@ -9,7 +9,7 @@ public class HtmlTextConverter {
         this.readerFactory = new FileReaderFactory(fullFilenameWithPath);
     }
 
-    public HtmlTextConverter(ReaderFactory readerFactory) throws IOException {
+    public HtmlTextConverter(ReaderFactory readerFactory) {
         this.readerFactory = readerFactory;
     }
 
