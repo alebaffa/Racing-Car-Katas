@@ -11,5 +11,4 @@ public class HtmlTextConverterTest {
         HtmlTextConverter converter = new HtmlTextConverter("foo");
         assertThat(converter.getFilename(), is("foo"));
     }
-
 }
