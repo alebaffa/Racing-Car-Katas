@@ -8,6 +8,7 @@ import java.io.Reader;
  * Created by alebaffa on 09/10/16.
  */
 public class HtmlFormatter {
+    private static final String BREAK_LINE = "<br />";
     BufferedReader bufferedReader;
     String html = "";
 
@@ -18,9 +19,17 @@ public class HtmlFormatter {
     public String convertToHtml() throws IOException {
         String line;
         while ((line = bufferedReader.readLine()) != null) {
-            html += StringEscapeUtils.escapeHtml(line);
-            html += "<br />";
+            convertLine(line);
+            addBreakLine();
         }
         return html;
+    }
+
+    private void addBreakLine() {
+        html += BREAK_LINE;
+    }
+
+    private void convertLine(String line) {
+        html += StringEscapeUtils.escapeHtml(line);
     }
 }
