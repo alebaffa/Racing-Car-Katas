@@ -1,13 +1,15 @@
 package tddmicroexercises.textconvertor;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 public class HtmlTextConverterTest {
     @Test
-    public void foo() {
+    public void should_return_the_filename() {
         HtmlTextConverter converter = new HtmlTextConverter("foo");
-        assertEquals("fixme", converter.getFilename());
+        assertThat(converter.getFilename(), is("foo"));
     }
+
 }
